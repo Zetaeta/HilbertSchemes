@@ -91,6 +91,42 @@ Morphisms corresponding to the second class of arrows are counted the same way i
 For each generator (except $\alpha_m, \beta_r$) we count morphisms of this type which take that generator to an element of $S$ and all generators with lower powers of $z$ to zero.
 \begin{lmm} If an arrow of this type cannot be dragged to some lower generator directly (i.e. without dragging it upwards then down), then it cannot be dragged to a lower generator in any manner.
 \end{lmm}
+Suppose we have such an arrow at a generator $\alpha$ that can be dragged indirectly to a lower generator $\beta$.
+If we call the highest power of $z$ appearing in the tail of any intermediate arrows along the path the height of the path,
+then there exists a path from $\alpha$ to $\beta$ of least height. If this height is that of $\alpha$ then we are done.
+If not, we may assume that the tail is dragged up to that height in one direction (assume negative $x$ direction) and down from it in the other (negative $y$),
+as otherwise this part of the path is redundant and the path could be shortened to one unit lower. Let $m_1$ and $m_2$ be the first and last values the tail takes
+at this height. Then $m_1/(xz)$ and $m_2/(yz)$ appear on the edges of a rectangular layer of the diagram, and we may assume the path travels
+directly upwards to (downwards from) $m1$ ($m_2$) from (to) the horizontal face of the diagram immediately below it.
+Let $m_0$ ($m_3$) be the beginning (end) of this vertical transit. Assume WLOG that $m_0$ is higher, then let $m_4$ be the block of the downward vertical path
+in the layer containing $m_0$. The intersection of $S$ with that layer is a rectangle with $m_0$ and $m_4$ immediately beside its borders,
+and we may drag the arrow around the border of that rectangle using the fact that the heads of the arrows from $m_0$, $m_4$ are in a single rectangular layer.
+This gives us a path of lower height.
 
 
+Thus for each generator $\alpha$, the morphisms we are counting correspond to arrows downward from $\alpha$ that cannot be dragged any farther down.
+There are two cases to consider: Either $\alpha$ is the only generator at its height, or there is one other generator $\beta$ found on the opposite corner of that layer.
+In the first case, the upward-facing surface of the layer below $\alpha$ (those elements $m$ of $S$ with power of $z$ one less than $\alpha$ satisfying $zm \in I$)
+is rectangular of $x-$length $\xi$ and $y-$length $\eta$, and arrows can be dragged downward in either the $x$ or $y$ direction.
+Then arrows that cannot be dragged farther down are those for which $x^{\xi}f(\alpha) \in I$ and $y^\eta f(\alpha) \in I$,
+which by the rectangular nature of layers of $S$ are precisely arrows with heads in the $\xi \times \eta$ rectangle of their layer of $S$
+found immediately inwards of that layer's far corner, for any layer below $\alpha$. This is the same as counting the number of boxes found
+directly below the rectangular surface under $\alpha$.
+
+In the second case, assume $\alpha = \alpha_i$ and $\beta=\beta_j$ for some $i,j$. To count the morphisms we are interested in from this layer,
+we first count those that take $\alpha$ to $S$ and then those taking $\alpha$ to zero but $\beta$ to $S$.
+Let $p$ be the distance in the $x$ direction from $\alpha_i$ to $\alpha_{i+1}$, and $q$ be minimal such that  $y^{q}\alpha/z \in I$,
+let $r$ be the distance in the $y$ direction from $\beta$ to $\alpha$, and let $s$ be the distance in the $x$ direction from $\beta_j$ to $\beta_{j+1}$.
+Then the upward-facing surface of the layer below $\alpha$ and $\beta$ is the disjoint union of a $p \times q$ rectangle and a $r \times s$ one.
+By the same argument as the previous case, arrows taking $\beta$ to $S$ that cannot be dragged downwards are those with heads that lie in the
+cornermost $p \times q$ rectangle of their layer of $S$.
+The arrows taking $\alpha$ to zero are arrows from $\beta$ that can be dragged neither downwards nor to have their tail at $\alpha$.
+Arrows for which $x^rf(\beta) \in S$ can be dragged to $\beta$, so these arrows we count are those with heads that lie in
+the cornermost $r \times s$ rectangle of their layer of $S$. Therefore the total number of morphisms counted for $\alpha$ and $\beta$ is
+the number of boxes in the upward-facing surface under $\alpha,\beta$ in each layer below them, which is the number of blocks in $S$ found directly below this surface.
+
+So the total count of the morphisms with type three arrows is obtained by counting for every upward-facing surface of $S$ all the blocks below that surface,
+which will count every block of $S$ exactly once, giving $d$ morphisms.
+
+Therefore $\dim_\C \Hom_R(I,R/I)=d+d+d=3d$
 \end{document}
