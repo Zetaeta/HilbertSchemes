@@ -197,7 +197,7 @@ unmon2 (Mon2 (x,y)) = (fromIntegral x, fromIntegral y)
 
 squares sz = concat . map (square sz . (sz .**) )
 
-size = 0.3
+size = 2.0
 
 right (x,y) = [(sx+size,sy+size),(sx+size,sy)]
     where (sx,sy) = size .** (x,y)
@@ -244,6 +244,9 @@ draw gens = do
 
 drawgens = renderPrimitive Lines . verticate . map to3 . concat . map (gen2 . unmon2)
 
+rectb w h (x,y) = renderPrimitive Lines . verticate $ map (to3 . (size .**)) [(x,y),(x+w,y),(x+w,y),(x+w,y+h),(x+w,y+h),(x,y+h),(x,y+h),(x,y)]
+recti w h (x,y) = renderPrimitive Quads . verticate $ map (to3 . (size .**)) [(x,y),(x+w,y),(x+w,y+h),(x,y+h)]
+
 display2 :: DisplayCallback
 display2 = do
     clear [ColorBuffer,DepthBuffer]
@@ -254,11 +257,16 @@ display2 = do
     polygonSmooth $= Enabled
     draw [x#x#x,x#x#y,y#y#y#y]
     draw [x#x#x,x#x#y##3,y#y#y#y]
-    draw [x##n # y## (50-n) | n <- [0..50]]
-    lineWidth $= 1.0
+--    draw [x##n # y## (50-n) | n <- [0..50]]
+    currentColor $= Color4 0.5 0.5 0.5 0.5
+    recti 1 2 . unmon2 $ x##2 #y
     currentColor $= Color4 1.0 0.0 0.0 1.0
+    rectb 1 2 . unmon2 $ x##2 #y
+    lineWidth $= 1.0
+    currentColor $= Color4 0.0 0.0 1.0 1.0
     arrow2 sz (x##3) (x # y)
     arrow2 sz (y##4) (y##3)
+
 --    renderPrimitive Quads $ verticate (gens sz genList)
 --    renderPrimitive Lines $ mapM_ (\(x,y,z) -> vertex $ Vertex3 x y z) (cubes 2.0 [(0,0,0),(1,0,0)])
 --    arrow sz (0,0,3) (2,2,0)
