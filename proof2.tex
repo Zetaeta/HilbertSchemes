@@ -50,8 +50,9 @@
 
 \begin{document}
 
-\begin{thm} Let $I \subset J \subset R := \C[x,y]$ be a point of $\Hilb^{n,m}$ such that the monomials of $J/I$ form a rectangle in the Young diagram representation. Then the tangent space at $(I,J)$ has dimension $n$
+\begin{thm} Let $I \subset J \subset R := \C[x,y]$ be a point of $\Hilb^{n,m}$ such that the monomials of $J/I$ form a rectangle $\mathcal R$ in the Young diagram representation. Then the tangent space at $(I,J)$ has dimension $n$
 \end{thm}
+Label the generators of $I$ found above the rectangle counting downwards $\alpha_0, \dots, \alpha_k$ and those below counting upwards $\beta_0, \dots, \beta_l$
 The tangent space is isomorphic to $\Ker (\psi \oplus 1 - 1 \oplus \phi) \subset \Hom(I,R/I)\oplus \Hom(J,R/J)$, where $\psi : \subset \Hom(I,R/I) \to \Hom(I,R/J)$ and $\psi : \subset \Hom(J,R/J) \to \Hom(I,R/J)$
 are induced by $I \hookrightarrow J$, $R/I \twoheadrightarrow R/J$
 The young diagram of monomials $S_I$ in $R/I$ contains the monomials $S_J$ of $R/J$. Call the boundary curve of $S_I$ (extending along the axes as shown) $B_I$, and that of $S_J$ $B_J$. 
@@ -59,7 +60,12 @@ Morphisms in $\Hom(I,R/J)$ are those whose arrows $A$ satisfy the condition that
 then that arrow must be in $A$.
 It suffices to consider only morphisms consisting of arrows of a single length and direction.
 First we show that $\psi-\phi$ is surjective. Morphisms in $\im \psi$ are those whose arrows $A$ satisfy the condition that,
-if an arrow in $A$ can be dragged to another generator keeping its head below and tail above $S_I$ (the head may go above $S_J$) then that arrow must be in $A$
+if an arrow in $A$ can be dragged to another generator keeping its head below and tail above $S_I$ (the head may go above $S_J$) then that arrow must be in $A$.
+If an arrow is dragged in this manner to another but cannot be dragged while keeping its head below $S_J$, then we say it is dragged through the rectangle $\mathcal R$
+The remaining morphisms are those that do not satisfy this condition, i.e. they contain some arrow $\mathbb a$ that could be dragged through the rectangle to $\mathbb b$, but do not contain $\mathbb b$.
+We may assume $\mathbb a, \mathbb b$ are directly to the left of or below $\mathcal R$.
+Consider such morphisms where $\mathbb a$ points downwards from the $\alpha$ generators. It suffices to consider those for which $\mathbb a$ is to the left of $\mathcal R$:
+if $\mathbb a$ is below $\mathcal R$ and $\mathbb b$ is to the left, then $<\mathbb b>_{I,J}$ is of this type and $<\mathbb a>_{I,J}+<\mathbb b>_{I,J} \in \im \psi$
 
 
 
