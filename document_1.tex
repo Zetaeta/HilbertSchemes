@@ -1,0 +1,498 @@
+\documentclass[a4page]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{ytableau}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage{subfig}
+\usepackage[margin=0.75in]{geometry} \usepackage{polynom}
+
+\def\Ker{\operatorname{Ker}}
+\def\Id{\operatorname{Id}}
+\def\Log{\operatorname{Log}}
+\def\id{\operatorname{id}}
+\def\Spec{\operatorname{Spec}}
+\def\Hilb{\operatorname{Hilb}}
+\def\Hom{\operatorname{Hom}}
+\def\LM{\operatorname{LM}}
+\def\LT{\operatorname{LT}}
+\def\hcf{\operatorname{hcf}}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Supp}{Supp}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\def\S{\mathcal{S}}
+\def\W{\mathcal{W}}
+\def\a{\mathbf{a}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\im}{Im}
+
+\begin{document}
+	
+\title{\bf\Huge Hilbert Schemes of points}
+\author{\Large Daniel Mulcahy and Peter Phelan}
+\date{\vfill July 14, 2018}
+	
+\maketitle
+\thispagestyle{empty}
+\newpage
+	
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+	
+\section{Introduction}
+The Hilbert scheme of $n$ points in $d$ dimensions is defined as \[\Hilb^n(\C^d) = \{I \subset \C[x_1, \dots, x_d] \mid \dim_{\C} \C[x_1, \dots, x_d]/I = n\}\]
+$\Hilb^n(\C^d)$ is a scheme of dimension $nd$, but it is in general not smooth and the purpose of our project is to investigate where singularities can appear.
+
+\section{Tangent space representation in 2 dimensions}
+Let $ R = \mathbb{C}[x,y] $ and let $I$ be an ideal in $R$.
+We define the Hilbert scheme of $n$ points in two dimensions as follows.
+$$ \Hilb^{n}(\mathbb{C}^{2}) = \{I \subset R \ | \ \dim{R/I} = n \} $$ We refer to the proof in \cite{nested_schemes} that the fixed points of the group action $ (\mathbb{C}^{*})^{2} $ on $ \Hilb^{n}(\mathbb{C}^{2})$ are monomial ideals, where $ (\mathbb{C}^{*})^{2} $ is the algebraic torus group.
+We also refer to the statement in \cite{schemes} that for a normal variety $X$ with the action $ T = (\mathbb{C}^{*})^{2} $ and $ X^{T} $ the fixed points of the action, if $ X^{T} $ is smooth, then $ X $ is smooth.
+Using these facts we conclude that to determine if $ \Hilb^{n}(\mathbb{C}^2)$ is smooth, it is enough to determine the smoothness at monomial ideals.
+For a monomial ideal $I$, the set $\S$ of monomials of $R\setminus I$ forms a basis of $R/I$, and we see that $\S$ can be represented as a Young diagram with the square at $(n,m)$ corresponding to the monomial $x^ny^m$
+
+\subsection{Description of arrows}
+In this section we discuss the treatment of Hilbert schemes of points as dealt with in \cite{nested_schemes}, within which it is stated that the tangent space of $ \Hilb^{n}(\mathbb{C}^{2}) $ at a point $I$ is isomorphic to $ \Hom_{R}(I,R/I) $.
+Additionally due to the action of $ (\mathbb{C}^{*})^{2} $ lifted to $ \Hom_{R}(I,R/I) $, we may describe its weight basis.
+Denote the generators of $I$ as $ \alpha_{0}, \dots, \alpha_{m} \in A $ going from bottom to top of $ \mathcal{S}$.
+We may consider only those elements $ \mathcal{W} \subset \Hom_{R}(I,R/I) $ of pure weight, i.e. morphisms taking the canonical generators to $0$ or $ \mathcal{S} $.
+A morphism $f \in \mathcal{W}$ can be viewed as a collection of arrows on the Young diagram, each pointing from some $\alpha_i$ to $f(\alpha_i) \in \S$.
+Obviously there is at most one arrow pointing from each generator.
+Suppose for two generators $ \alpha_{i}, \alpha_{j}$, there exists monomials $ m,n $ such that $ m \cdot \alpha_{i} = n \cdot \alpha_{j}$.
+Then since $f$ is an $R$-module homomorphism this implies that $ m \cdot f(\alpha_{i}) = n \cdot f(\alpha_{j}) $.
+For any monomial $m$, $m\cdot f(\alpha_i) \in \S \cup \{0\}$, and for $\beta \in \S$ if $m\beta \neq 0$ then any morphism containing the arrow $\alpha_i \to \beta$ must also contain the arrow $\alpha_j \to m\beta /n$ and vice versa.
+In particular if $m\beta/n$ contains negative powers of $x$ or $y$ the arrow $\alpha_i \to \beta$ can never occur in a morphism.
+Geometrically this means that if an arrow from $\alpha_i$ can be dragged to $\alpha_j$ keeping the tail outside $\S$ and the head inside $\S$ or beyond the axes,
+then those arrows must appear together in any morphism, and if the head of one is beyond some axis then the other can never appear.
+Any collection of arrows from generators to $S$ satisfying these properties represents an element of $\W$.
+For some arrow $\a$ from $\alpha_i$ to $\beta \in \S$, either there exists some morphism $\langle \a \rangle \in \W$ containing $\a$
+that sends the largest possible number of generators to $0$ and thus consists only of arrows that $\a$ can be dragged to, or no such morphism exists in which case we say $\langle\a\rangle=0$.
+Then $\W$ is generated by the set $\mathcal{T}$ of morphisms of the form $\langle\a\rangle$ and the set of all such morphisms is a basis for $\Hom(I,R/I)$.
+
+%Let $ \alpha =\alpha_i $, $ \beta \in \mathcal{S} $ and 
+%define the subset $ \mathcal{T}_{\alpha,\beta} = \{ f \in \mathcal{W} \ | \ f(\alpha) = \beta \} $.
+%When this subset is non-empty, let $ f_{\alpha,\beta} $ be the unique morphism taking the largest number of canonical generators to $0$.
+%Let $A = \{ \alpha \in I \ | \ \alpha \ \text{is a generator of} \ I \} $, 
+%It is proven in [2] that $ \Hom_{R}(I,R/I) $ is spanned by the weight basis $ \mathcal{T} = \{ f_{\alpha,\beta} \ | \ \alpha \in A, \ \beta \in P_{\alpha} \cup Q_{\alpha} \} $.
+%\\ \\
+%Suppose for some morphism $ f \in \mathcal{A}$, we have a collection of generators $ \alpha_{i} \in A $ along with a collection of non-zero monomials $ \beta_{i} \in \mathcal{S} $ for which $ f(\alpha_{i}) = \beta_{i} \ \forall i $.
+%We can think of this morphism as a collection of arrows on the Young diagram associated to $ \mathcal{S}$ from $ \alpha_{i}$ to $ \beta_{i}$.
+%We say that two arrows satisfying this condition are equivalent if they belong to the same morphism.
+%If we note the fact that $ f(\alpha_{i}) = \beta_{i} \implies f(\alpha_{i}) \cdot m/n = f(\alpha_{i} \cdot m/n) = \beta_{i} \cdot m/n \implies f(\alpha_{j}) = \beta_{j}$, we can see that multiplication by the monomial $ m/n $ corresponds to dragging the tail of the arrow by $ m/n$ to the other generator, and demanding that $ m \cdot \beta_{i} = n \cdot \beta_{j} $ is non zero corresponds to demanding that the head of the arrow stays in the diagram.
+%If after shifting some arrow such that the head $ \beta_{i}$ is below the axis, then this monomial has negative powers which implies $ \beta_{i} \equiv 0 $ in $ R/I$.
+%Finally when we say that the morhpism $ f_{\alpha,\beta} $ takes the largest number of canonical generators to $0$, we mean that the morphism contains the arrow from $ \alpha \to \beta $ and any equivalent arrows, but any generator that this arrow cannot be dragged to will be mapped to $0$.
+
+\subsection{Geometric view}
+%The proofs we give later in the paper are inspired by a geometric view of counting this weight basis, so here we will establish this view.
+%When we say the morphism $ f_{\alpha,\beta} $ takes the largest number of canonical generators to $0$, we let this morphism uniquely represent the arrow from $ \alpha \to \beta $ and all of its equivalent arrows as explained above.
+%Geometrically this corresponds to the unique arrow that has been dragged as far as possible along the diagram in the direction it is pointing, where we allow this arrow to uniquely represent all of its equivalent arrows.
+In the two dimensional case, there are three different kinds of arrows:
+\begin{enumerate}
+	\item Arrows pointing between west and north inclusive
+	\item Arrows pointing between west and south.
+	\item Arrows pointing between south and east inclusive.
+\end{enumerate}
+\begin{lemma}
+	Arrows of the second kind can never occur in a morphism.
+\end{lemma}
+\begin{proof}
+These arrows can always be dragged around corners so can be dragged to $\alpha_0$ where their head will be below the axis.
+%By definition Young diagrams are convex about $ (0,0) \in \mathbb{N}^{2} $.
+%So for all arrows with no components pointing north, the head can never leave the diagram vertically, and for all arrows with no components pointing east, the head can never leave the diagram horizontally.
+%Among all such arrows satisfying both of these conditions, arrows pointing west or south only cannot always be moved about corners.
+%In particular this occurs for west only arrows when the horizontal distance between the tail and the next generator to the west is greater than or equal to the length of the arrow, and similarily for south only arrows.
+%It is easy to see that the remaining arrows can be moved about any corner of the diagram.
+%These remaining arrows are exactly the arrows of the second kind.
+%Therefore as we move the tail towards either of the generators closest to the axes, a southwest pointing arrow will cross the axis and so these arrows are equivalent to $0$.
+\end{proof}
+Let $ p_{i} $ be the vertical distance between $ \alpha_{i},\alpha_{i+1} $, $ q_{i} $ the horizontal distance between $ \alpha_{i},\alpha_{i-1} $.
+For some generator $ \alpha_{i}$, define $ P_{\alpha_{i}} = \{ \beta \in B \ | \ \beta \ \text{lies to the left of} \ \alpha_{i}, \ y^{p_{i}} \beta \in I \} $, $ Q_{\alpha_{i}} = \{ \beta \in B \ | \ \beta \ \text{lies lower than } \ \alpha_{i}, \ x^{q_{i}} \beta \in I \} $.
+Admissible arrows of the first kind correspond to the morphisms $ f_{\alpha.\beta} = \langle \mathbf{a}_{\alpha,\beta}\rangle$ with $\mathbf{a}_{\alpha,\beta}$ from $\alpha$ to $\beta$ where $\beta \in P_{\alpha} $.
+In this case $f_{\alpha.\beta}$ takes all generators above $\alpha$ to $0$.
+Similarily arrows of the third kind correspond to the morphisms $ f_{\alpha.\beta} $ such that $\beta \in Q_{\alpha} $.
+\subsection{Counting}
+
+In the paper \cite{nested_schemes}, the proof that $ | \mathcal{T} | = 2n $ is done by proving that $$ | \mathcal{T} | = \sum_{\alpha \in A}|P_{\alpha}| + \sum_{\alpha \in A}|Q_{\alpha}| = n + n = 2n $$ 
+To count the elements of $ P_{\alpha_{i}}$, for each column we count all squares within the vertical distance $ p_{i} $ of the top of that column, or equivalently every square within the vertical interval from $\alpha_i$ (inclusive) to $\alpha_{i+1}$
+This amounts to counting every square in every vertical interval of the diagram, giving $n$ unique arrows.
+The same argument applies to $ Q_{\alpha} $, only we look at the rows and horizontal distances $ q_{i} $ instead.
+
+%\\ \\
+%Now suppose we want to count every unique arrow of the first kind from the generator $ \alpha_{0} $.
+%To avoid counting equivalent arrows, we count only the unique representatives described above.
+%Now we note that if the head of one of these arrows has vertical distance greater than $ p_{0} $ from the top of its residing column, then it can be moved further northwest, so we only count the arrows such that the head is within vertical distance $ p_{0} $ of the top of the column, which coincides with the counting argument detailed above.
+%The process is repeated for each $ \alpha \in A $ up until the final generator.
+%\\ \\
+Let us apply the argument above to an example.
+Consider $ I = (x^{6},x^{5}y,x^{2}y^{2},y^{4}) = (\alpha_{0},\alpha_{1},\alpha_{2},\alpha_3) $ where the generators are labelled starting from the lowest up as described above.
+First we look at the diagrams corresponding to the counting argument in the paper.
+Below that we look that the same diagrams where we count the unique arrows from each generator instead.
+
+
+$$
+\begin{ytableau}
+\none[$$ \circ $$] & \none & \none & \none & \none  \\
+a  & a & \none  &  \none & \none & \none    \\
+&  & \none[$$ \circ $$]  &  \none & \none & \none   \\
+&  & a & a & a &  \none[$$ \circ $$]   \\
+&  &  &  &  & a &  \none[$$ \circ $$]  
+\end{ytableau}
+\begin{ytableau}
+\none[$$ \circ $$] & \none & \none & \none & \none  \\
+b	& b & \none  &  \none & \none & \none    \\
+&  & \none[$$ \circ $$]  &  \none & \none & \none   \\
+&  & b & b & b & \none[$$ \circ $$]   \\
+&  &  &  &  &  &  \none[$$ \circ $$]  
+\end{ytableau}
+\begin{ytableau}
+\none[$$ \circ $$] & \none & \none & \none & \none  \\
+c	& c & \none  &  \none & \none & \none    \\
+c	& c & \none[$$ \circ $$]  &  \none & \none & \none  \\
+&  &  &  &  & \none[$$ \circ $$]  \\
+&  &  &  &  &  &\none[$$ \circ $$]  
+\end{ytableau}
+$$
+$$ P_{\alpha_{0}} \quad \quad \quad \quad \quad \quad \quad \quad \quad P_{\alpha_{1}} \quad \quad \quad \quad \quad \quad \quad \quad \quad P_{\alpha_{2}} $$
+$$
+\begin{ytableau}
+\none[$$ \circ $$] & \none & \none & \none & \none  \\
+a & a & \none  &  \none & \none & \none    \\
+a & a & \none[$$ \circ $$]  &  \none & \none & \none   \\
+&  &  & a & a &  \none[$$ \circ $$]   \\
+&  &  &  & a & a &  \none[$$ \circ $$]  
+\end{ytableau}
+\begin{ytableau}
+\none[$$ \circ $$] & \none & \none & \none & \none  \\
+	&  & \none  &  \none & \none & \none    \\
+&  & \none[$$ \circ $$]  &  \none & \none & \none   \\
+&  & b & b & b & \none[$$ \circ $$]   \\
+&  &  & b & b & b &  \none[$$ \circ $$]  
+\end{ytableau}
+\begin{ytableau}
+\none[$$ \circ $$] & \none & \none & \none & \none  \\
+&  & \none  &  \none & \none & \none    \\
+&  & \none[$$ \circ $$]  &  \none & \none & \none  \\
+&  &  &  &  & \none[$$ \circ $$]  \\
+&  &  &  &  & c &\none[$$ \circ $$]  
+\end{ytableau}
+$$
+$$ Q_{\alpha_{3}} \quad \quad \quad \quad \quad \quad \quad \quad \quad Q_{\alpha_{2}} \quad \quad \quad \quad \quad \quad \quad \quad \quad Q_{\alpha_{1}} $$
+
+
+
+\newpage
+
+
+%\begin{lemma}
+%	The arrows in the kernel correspond to arrows that are in the image of both maps and arrows from the region $ J/I $.
+%\end{lemma}
+%\begin{proof}
+%	Suppose for some morphism $ f_{\alpha.\beta} \in \Hom_{R}(I,R/I) \cap \Hom_{R}(J,R/J) $ that $ \phi(f_{\alpha.\beta}), \ \psi(f_{\alpha.\beta}) \in \Hom_{R}(I,R/J) $ such that $ \phi(f_{\alpha.\beta}) = \psi(f_{\alpha.\beta}) $ then $ (\phi - \psi)(f_{\alpha.\beta},f_{\alpha.\beta}) \in \Ker(\phi - \psi) $.
+%Additionally suppose we have a morphism $ f_{\alpha.\beta} \in \Hom_{R}(J,R/J) \ \text{or} \ \Hom_{R}(I,R/I) $ such that $ f_{\alpha.\beta} \notin \Hom_{R}(I,R/J) $, then $ (\phi - \psi)(f_{\alpha.\beta},f_{\alpha.\beta}) \in \Ker(\phi - \psi) $.
+%\end{proof}
+
+\newpage
+
+\section{Three dimensional Case}
+We define the Hilbert scheme of $n$ points in three dimensions where $I$ is an ideal.
+$$ \Hilb^{n}(\mathbb{C}^{3}) = \{ I \subset R = \mathbb{C}[x,y,z] \ | \ \dim \mathbb{C}[x,y,z]/I = n \} $$
+The proof that the fixed points of the group action of $ (\mathbb{C}^{*})^{3} $ on $ \Hilb^{n}(\mathbb{C}^{3})$ are monomial ideals follows the same procedure as in the two dimensional case.
+Similarly the the tangent space at a point $I \in \Hilb^{n}(\mathbb{C}^{3})$ is $ \Hom_{R}(I,R/I)$.
+We now have Young diagrams consisting of cubes in 3 dimensions, and morphisms and arrows and behave similarly.
+
+
+\begin{theorem} Let $I \subset R $ be an ideal generated by monomials of the form $x^iz^j$ and $y^iz^j$
+	such that $R/I$ is a vector space of dimension $d$.
+Then $\dim_{\mathbb{C}} \Hom_R(I,R/I)=3d$
+\end{theorem}
+\begin{proof}
+$\Hom(I,R/I)$ is generated by those morphisms $\W$ that send the canonical generators of $I$ to zero or monomials $\S$ in $R\setminus I$.
+These morphisms can be represented as a collection of arrows in the 3 dimensional Young diagram made up of the monomials of $\S$
+with tails at the generators and heads at some block inside the diagram.
+The map $f$ represented by such a collection of arrows is an $R-$morphism iff for any generators $\alpha,\beta$ such that $m\alpha=n\beta$, $mf(\alpha)=nf(\beta) \in R/I$.
+This is satisfied if for each arrow $\a \in f$, any arrows obtained by dragging it block by block until its tail is at a different generator
+while keeping its head inside $\S$ and tail outside are also part of $f$, and $\a$
+cannot be dragged in this manner until their head lies below the bounds of the diagram (i.e.
+has negative powers of some variable).
+We may assume that such a dragging happens along the boundary keeping the tail directly or diagonally adjacent to a block in $\S$.
+
+We may thus consider only morphisms where every arrow is equal in length and direction and any arrow can be dragged as described to any other.
+Label the canonical generators in two groups: $\alpha_0=z^p$ downwards in the $xz$ plane to $\alpha_m=x^q$, $\beta_0=\alpha_0$ downwards in the $yz$ plane to $\beta_l=y^r$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{alphas}
+\caption{$\alpha$ generators in red and $\beta$ in blue}
+\label{fig:gens}
+\end{figure}
+
+The absence of generators containing nonzero powers of $x$ and $y$ means that if we take the $z$ axis to be vertical, each horizontal layer of blocks in the diagram is rectangular.
+There are three types of arrows possible: firstly those arrows from the generators $\alpha_1, \dots, \alpha_m$ with heads having higher or equal powers of $z$,
+secondly arrows from the generators $\beta_1, \dots, \beta_l$ with the same condition,
+and thirdly all arrows from any generators (except $\alpha_m$, $\beta_l$) with heads having smaller powers of $z$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{p}
+\caption{$p_0$}
+\label{fig:p}
+\end{figure}
+
+Consider the first class of arrows.
+For each $\alpha_i$, $i=1, \dots, m$ let us count the morphisms $f$ consisting of these arrows such such that $f(\alpha_i) \neq 0$ and $f(\alpha_j)=0$ for $j<i$.
+Let $p_i$ be the vertical distance from $\alpha_i$ to $\alpha_{i-1}$. %, and $q_i$ be such that $y^{q_i-1}\alpha_i/x \notin I$ but $y^{q_i}\alpha_i/x \in I$,
+%i.e.
+%the distance in the $y$ direction from $\alpha_i$ along the edge of the diagram.
+$f(\alpha_{i-1})=0$ means that we cannot drag the arrow at $\alpha_i$ to $\alpha_{i-1}$,
+therefore $z^{p_i}f(\alpha_i) \in I$.
+Such an arrow cannot be dragged to any generator $\beta_j$: 
+$f(\alpha_i)$ has higher or equal powers of $z$ and $y$ than $\alpha_i$ (as $y \nmid \alpha_i$) so must have a lower power of $x$.
+Thus $f(\alpha_i)=y^bz^c\alpha_i/x^a$,
+and dragging the arrow will produce arrows with tails at $m \in I$ and heads at $my^bz^c/x^a$.
+For any such arrow, $my^bz^c/x^a \in \S \implies m/x^a \in \S$.
+The intersection of the horizontal layer containing $m$ with $\S$ is rectangular and the tail of these arrows will thus always be found some power of $x$ beyond this rectangle
+so cannot be dragged around to any $\beta_i$ on the $y$ side.
+
+The head of the arrow has equal or greater powers of $y$ and $z$ than $\alpha_i$, and $\alpha_j$ has higher powers of $x$ than $\alpha_i$ for $j>i$,
+so dragging the arrow to these $\alpha_j$ cannot push the head below the diagram.
+Therefore each arrow from $\alpha_i$ to some element of $\S$ with a not lower power of $z$ that is at most $p_i$ blocks below the surface of the diagram
+defines a distinct morphism that is zero on each $\alpha_j, j<i$ and on all $\beta_j$.
+The number of these arrows is the same as the number of boxes in $\S$ contained in the height interval from $\alpha_i$ to $\alpha_{i-1}$,
+i.e.
+those whose powers of $z$ range from $a$ to $a+p_i-1$ if $a$ is the power of $z$ in $\alpha_i$.
+Counting these boxes means that every box will be counted exactly once when we count $\alpha_1, \dots, \alpha_m$, giving $d$ morphisms of this type.
+
+Morphisms corresponding to the second class of arrows are counted the same way interchanging $x$ and $y$, giving $d$ of them.
+
+For each generator (except $\alpha_m, \beta_r$) we count morphisms generated by arrows of the third class which take that generator to an element of $\S$ and all generators with lower powers of $z$ to zero.
+\begin{lemma} If an arrow of this type cannot be dragged to some lower generator directly (i.e.
+without dragging it upwards then down), then it cannot be dragged to a lower generator in any manner.
+\end{lemma}
+\begin{proof}
+Suppose we have such an arrow at a generator $\alpha$ that can be dragged indirectly to a lower generator $\beta$.
+If we call the highest power of $z$ appearing in the tail of any intermediate arrows along the path the height of the path,
+then there exists a path from $\alpha$ to $\beta$ of least height.
+If this height is that of $\alpha$ then we are done.
+If not, we may assume that the tail is dragged up to that height in one direction (assume negative $x$ direction) and down from it in the other (positive $y$),
+as otherwise this part of the path is redundant and the path could be shortened to one unit lower.
+Let $m_1$ and $m_2$ be the first and last values the tail takes
+at this height.
+Then $m_1/(xz)$ and $m_2/(yz)$ appear on the edges of a rectangular layer of the diagram,
+and we may drag the arrow around the border of that rectangle from $m_1/z$ to $m_2/z$ using the fact that the heads of these arrows are in a single rectangular layer.
+This gives us a path of lower height.
+\end{proof}
+
+
+Thus for each generator $\alpha$, the morphisms we are counting correspond to arrows downward from $\alpha$ that cannot be dragged any farther down.
+There are two cases to consider: Either $\alpha$ is the only generator at its height, or there is one other generator $\beta$ found on the opposite corner of that layer.
+In the first case, the upward-facing surface of the layer below $\alpha$ (those elements $m$ of $\S$ with power of $z$ one less than $\alpha$ satisfying $zm \in I$)
+is rectangular of $x-$length $\xi$ and $y-$length $\eta$, and arrows can be dragged downward in either the $x$ or $y$ direction.
+Then arrows that cannot be dragged farther down are those for which $x^{\xi}f(\alpha) \in I$ and $y^\eta f(\alpha) \in I$,
+which by the rectangular nature of layers of $\S$ are precisely arrows with heads in the $\xi \times \eta$ rectangle of their layer of $\S$
+found immediately inwards of that layer's far corner, for any layer below $\alpha$.
+This is the same as counting the number of boxes found
+directly below the rectangular surface under $\alpha$.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{topt1}
+\caption{$\xi$ marked in blue, $\eta$ in red}
+\label{fig:topt1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{topt22}
+\caption{$\xi$ marked in blue, $\eta$ in red}
+\label{fig:topt2}
+\end{figure}
+
+In the second case, assume $\alpha = \alpha_i$ and $\beta=\beta_j$ for some $i,j$.
+To count the morphisms we are interested in from this layer,
+we first count those that take $\alpha$ to $\S$ and then those taking $\alpha$ to zero but $\beta$ to $\S$.
+Let $p$ (pink) be the distance in the $x$ direction from $\alpha_i$ to $\alpha_{i+1}$, and $q$ (green) be minimal such that  $y^{q}\alpha/z \in I$,
+let $r$ (red) be the distance in the $x$ direction from $\beta$ to $\alpha$, and let $s$ (blue) be the distance in the $y$ direction from $\beta_j$ to $\beta_{j+1}$.
+Then the upward-facing surface of the layer below $\alpha$ and $\beta$ is the disjoint union of a $p \times q$ rectangle and a $r \times s$ one.
+By the same argument as the previous case, arrows taking $\alpha$ to $\S$ that cannot be dragged downwards are those with heads that lie in the
+cornermost $p \times q$ rectangle of their layer of $\S$.
+The arrows taking $\alpha$ to zero are arrows from $\beta$ that can be dragged neither downwards nor to have their tail at $\alpha$.
+Arrows for which $x^rf(\beta) \in \S$ can be dragged to $\beta$, so these arrows we count are those with heads that lie in
+the cornermost $r \times s$ rectangle of their layer of $\S$.
+Therefore the total number of morphisms counted for $\alpha$ and $\beta$ is
+the number of boxes in the upward-facing surface under $\alpha,\beta$ in each layer below them, which is the number of blocks in $\S$ found directly below this surface.
+
+So the total count of the morphisms with type three arrows is obtained by counting for every upward-facing surface of $\S$ all the blocks below that surface,
+which will count every block of $\S$ exactly once, giving $d$ morphisms.
+
+Therefore $\dim_{\mathbb{C}} \Hom_R(I,R/I)=d+d+d=3d$
+\end{proof}
+
+\subsection{Some examples}
+First we look at an example of a point $ I = (x^2,y^2,z^2,xyz) \in \Hilb^{4}(\mathbb{C}^{3})$ that is not smooth.
+Figure \ref{fig:singular} is a diagram with the arrows included.
+For a smooth point we would expect that $ \dim \Hom_{R}(I,R/I) = 3 \cdot 4 = 12 $.
+But we can clearly count 18 arrows on the diagram, therefore $I$ is not a smooth point.
+\\ \\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{singular}
+\caption{Singular example}
+\label{fig:singular}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{nonsingular}
+\caption{Nonsingular example}
+\label{fig:nonsingular}
+\end{figure}
+Now we look at an example of a smooth point $ I = () \in  \Hilb^{n}(\mathbb{C}^{3}) $ where we would expect to see $ \dim \Hom_{R}(I,R/I) = 3 \cdot n $.
+Figure \ref{fig:nonsingular} is a diagram with the arrows included.
+We can count exactly $3n$ arrows, so the point is smooth as expected.
+
+\section{Nested Hilbert Schemes}
+We define the Nested Hilbert schemes of $n$ points in two dimensions (where $I,J$ are ideals)
+$$ \Hilb^{n,m}(\mathbb{C}^{2}) = \{ (I,J) \ | \ \dim \mathbb{C}[x,y]/I = n, \ \dim \mathbb{C}[x,y]/J = m, \ I \subset J  \} $$
+We know from \cite{nested_schemes} that the scheme has dimension $2n$, and only tuples of monomial ideals need to be dealt with to determine smoothness.
+Recall that the tangent spaces of $\Hilb^{n}(\mathbb{C}^{2}) $ and $\Hilb^{m}(\mathbb{C}^{2}) $ are isomorphic to $\Hom_{R}(I,R/I)$ and $\Hom_{R}(J,R/J)$ respectively.
+Also note that since $I \subset J$, we naturally have the embedding $ I \hookrightarrow J $ and the projection $ R/I \to R/J $.
+These induce the maps 
+$$ \phi: \Hom_{R}(J,R/J) \to \Hom_{R}(I,R/J), \ \psi: \Hom_{R}(I,R/I) \to \Hom_{R}(I,R/J) $$ since $\Hom_{R}(\cdot,\cdot)$ is covariant with respect to its second argument and contravariant with respect to its first argument.
+Now we define $$ (\phi - \psi):\Hom_{R}(I,R/I) \oplus \Hom_{R}(J,R/J) \to \Hom_{R}(I,R/J) $$ $$ (\phi - \psi)(f_{1},f_{2}) = \phi(f_{1}) - \psi(f_{2}) $$ Since we're working over the category of modules, we know that the pullback of the maps $ \phi, \psi $ is $\Ker(\phi - \psi) $, and finally it can be shown that this pullback is isomorphic to the tangent space of $ \Hilb^{n,m}(\mathbb{C}^{2}) $.
+So to count the dimension of this tangent space, we must count the number of unique arrows in this kernel.
+
+Given an arrow $\mathbf a$, we call the morphism in $\Hom(I,R/I)$ (resp. $\Hom(I,R/J)$) containing $\mathbf a$ that takes the largest number of generators to $0$ the morphism $\langle \mathbf a \rangle_I$
+(resp. $\langle \mathbf a \rangle_{I,J}$) generated by $\mathbf a$, or if no morphism containing $\mathbf a$ exists then $\langle \mathbf a \rangle = 0$.
+
+\begin{theorem} Let $I \subset J \subset R := \C[x,y]$ be a point of $\Hilb^{n,m}$ such that the monomials of $J/I$ form a rectangle $\R$ in the Young diagram representation. Then the tangent space at $(I,J)$ has dimension $2n$
+\end{theorem}
+Label the generators of $I$ found above the rectangle counting downwards $\alpha_0, \dots, \alpha_k$ and those below counting upwards $\beta_0, \dots, \beta_l$
+The tangent space is isomorphic to $\Ker (\psi \oplus 1 - 1 \oplus \phi) \subset \Hom(I,R/I)\oplus \Hom(J,R/J)$, where $\psi : \subset \Hom(I,R/I) \to \Hom(I,R/J)$ and $\psi : \subset \Hom(J,R/J) \to \Hom(I,R/J)$
+are induced by $I \hookrightarrow J$, $R/I \twoheadrightarrow R/J$
+The young diagram of monomials $S_I$ in $R/I$ contains the monomials $S_J$ of $R/J$. Call the boundary curve of $S_I$ (extending along the axes as shown in figure \ref{fig:bounds}) $B_I$, and that of $S_J$ $B_J$.
+We say the region on the same side of one of these boundary curves as the origin is below it, and the region on the other side is above it.
+Morphisms in $\Hom(I,R/J)$ are those whose arrows $A$ satisfy the condition that, if an arrow in $A$ can be dragged to an arrow from another generator while keeping its head below $B_J$ and tail above $B_I$,
+then that arrow must be in $A$.
+It suffices to consider only the morphisms $W$ consisting of arrows of a single length and direction.
+First we show that $\psi-\phi$ is surjective. Morphisms in $\im \psi$ are those whose arrows $A$ satisfy the condition that,
+if an arrow in $A$ can be dragged to another generator keeping its head below and tail above $B_I$ (the head may go above $B_J$) then that arrow must be in $A$.
+If an arrow is dragged in this manner to another but cannot be dragged while keeping its head below $B_J$, then we say it is dragged through the rectangle $\R$
+The remaining morphisms are those that do not satisfy this condition, i.e. they contain some arrow $\mathbf a$ that could be dragged through the rectangle to $\mathbf b$, but do not contain $\mathbf b$.
+We may assume $\mathbf a, \mathbf b$ are directly to the left of or below $\R$.
+Consider such morphisms where $\mathbf a$ points downwards from the $\alpha$ generators and which are generated by $\mathbf a$. It suffices to consider the subset $G$ for which $\mathbf a$ is to the left of $\R$:
+if $\mathbf a$ is below $\R$ and $\mathbf b$ is to the left, then $\langle\mathbf b\rangle_{I,J} \in G$ and $\langle\mathbf a\rangle_{I,J}+\langle\mathbf b\rangle_{I,J} \in \im \psi$
+Consider the rectangle $\R'$ obtained by dragging $\R$ back along $\mathbf a$ such that the position of $\R'$ wrt the tail of $\mathbf a$ is the same as the position of $\R$ wrt the head of $\mathbf a$, as in Figure \ref{fig:cokrects}.
+Dragging the arrow through $\R$ is equivalent to dragging the tail of the arrow above $B_I$ through $\R'$.
+The requirement that $\mathbf a$ cannot be dragged to $\mathbf b$ without going through $\R$ means that the bottom left corner $C_{\R'}$ cannot be above $B_I$.
+The requirement that the head of $\mathbf a$ be directly to the left of $\R$ and the head of $\mathbf b$ be directly above means that the top side $T_{\R'}$ and right side $R_{\R'}$ of $\R'$ must be above $B_I$.
+In fact, every rectangle $\R'$ (henceforth rectangles are assumed to be of equal dimensions to $\R$) satisfying these three properties that occurs higher than $\R$
+corresponds uniquely in this manner to an arrow $\mathbf a$ (with $t_{\mathbf a}$ the first generator to the left of $\R'$) such that
+$\langle\mathbf a\rangle_{I,J} \in G$ unless $\langle\mathbf a\rangle_{I,J}=0$. We call these rectangles $G$-type.
+$\langle\mathbf a\rangle_{I,J}=0$ only if $h_{\mathbf a}$ is to the left of $t_{\mathbf a}$, which only occurs for the $n-m$ rectangles $\R'$ for which $C_{\R'} \in \R$
+i.e. the bottom-left-most square of $\R'$ is one of those shown in figure \ref{fig:poss}.
+
+\begin{figure}%
+    \centering
+    \subfloat[$B_I$]{{\includegraphics[width=0.4\textwidth]{S_I} }}%
+    \qquad
+    \subfloat[$B_J$]{{\includegraphics[width=0.4\textwidth]{S_J} }}%
+    \caption{the boundary curves}%
+    \label{fig:bounds}%
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{cokerrect}
+\caption{a $G$-type rectangle}
+\label{fig:cokrects}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{cokerzeros.png}
+\caption{extra $G$-type rectangles}
+\label{fig:poss}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{kerrect}
+\caption{a kernel-type rectangle}
+\label{fig:kerrects}
+\end{figure}
+
+Every other $f \in G$ consists of arrows from some of the generators $\alpha_1, \dots, \alpha_{k-1}$ pointing to boxes to the left of $\R$ which cannot be dragged to below $\R$,
+and are thus contained in $\im \phi$.
+The same analysis applies for the morphisms $G'$ obeying the mirrored condition ($\langle a \rangle_{I,J}$ where $\mathbf a$ points upwards from the $\beta$ generators and could be dragged up through $\R$),
+and $\Hom(I,R/J) = \im \psi \oplus \langle G\rangle \oplus \langle G'\rangle$ meaning $\psi - \phi$ is surjective.
+
+Morphisms in $\Ker \psi$ are those consisting solely of arrows with heads in $\R$, and are generated by $\langle \mathbf a \rangle_I$ where $\mathbf a$ cannot be dragged out of $\R$.
+Dragging $\R$ back along $\mathbf a$ (or equivalently any other arrow of $\langle \mathbf a \rangle_I$) gives a rectangle $\R'$
+such that $T_{\R'}$ and $R_{\R'}$ intersect $B_I$ (as $t_{\mathbf a}$ cannot be dragged out of $\R'$) and the upper-right corner $C'_{\R'}$ is above $B_I$ (as $t_{\mathbf a}$ is contained in $\R'$).
+Any rectangle $\R'$ with these properties (kernel-type) corresponds uniquely in this fashion to a morphism in $\Ker \psi$ consisting of arrows with tails at each generator found in $\R'$.
+Every such rectangle must occur either lower or farther left than $\R$, so we may first consider only those rectangles to the left.
+
+We claim that the number of $G$-type rectangles is equal to the number of kernel-type rectangles at the same height (higher than $\R$).
+A height $h$ is a vertical interval of the same size as the rectangle's height, we label the row of the Young diagram at the top of this interval $\mathcal{T}_h$ and the row below the bottom $\mathcal{B}_h$
+If $\R_1$ is the leftmost $G$-type rectangle and $\R_2$ is the rightmost at a given height, then clearly every rectangle in between is also $G$-type.
+$C_{\R_2}$ must lie on $B_I$, so the bottom left corner of $\R_2$ lies immediately upwards and to the right of the rightmost square in the row below $\R_2$.
+$\R_1$ being leftmost means either the bottom of $R_{\R_2}$ or the left end of $T_{\R_2}$ is 1 square to the right of $B_I$ (whichever occurs farther right), as shown in figure \ref{fig:cokt}.
+In the first case, the distance from $\R_1$ to $\R_2$ is the width $w$ of $\R$; otherwise it is the horizontal distance d from the end of $\mathcal{T}_h$ to the end of $\mathcal{T}_h$.
+Thus the number of $G$-type rectangles at this height is $\min \{d,w\}$
+
+\begin{figure}%
+    \centering
+    \subfloat[Case 1]{{\includegraphics[width=0.4\textwidth]{cokt1} }}%
+    \qquad
+    \subfloat[Case 2]{{\includegraphics[width=0.4\textwidth]{cokt2} }}%
+    \caption{2 cases for $G$-type rectangles}%
+    \label{fig:cokt}%
+\end{figure}
+
+\begin{figure}%
+    \centering
+    \subfloat[Case 1]{{\includegraphics[width=0.4\textwidth]{kert1} }}%
+    \qquad
+    \subfloat[Case 2]{{\includegraphics[width=0.4\textwidth]{kert2} }}%
+    \caption{2 cases for kernel-type rectangles}%
+    \label{fig:kert}%
+\end{figure}
+
+If $\R_1'$ is the leftmost kernel-type rectangle and $\R_2'$ is the rightmost at a given height, then clearly every rectangle in between is also kernel-type.
+$C'_{\R_1'}$ must be one square to the right of $B_I$, and either the left end of $T_{\R'_2}$ or the bottom of $R_{\R'_2}$ lies on $B_I$ (whichever occurs farther left) as shown in figure \ref{fig:kert}.
+In the first case, the distance from $\R_1$ to $\R_2$ is $w$, in the second it is $d$.
+Thus the number of kernel-type rectangles at this height is $\min \{d,w\}$ as required.
+Mirroring this argument we see the number of $G'$-type rectangles is the same as the number of kernel-type rectangles in the same columns (lower than $\R$)
+$G$-type rectangles excluding the $n-m$ described previously (which are also $G'$-type) are in bijection with morphisms of $G$, and the same is true of $G'$.
+As the kernel-type rectangles form a basis for $\Ker \psi$, we see that $\dim \Ker \psi = \dim \left(\langle G \rangle \oplus \langle G' \rangle\right)+2(n-m)$.
+
+From the exact sequence 
+\[0 \to \Ker (\psi \oplus 1 - 1 \oplus \phi) \to \Hom(I,R/I)\oplus \Hom(J,R/J) \to \Hom(I,R/J) \to 0\]
+we find 
+\begin{align*}
+\dim \Ker (\psi- \phi) &= \dim \Hom(J,R/J) + (\dim \Ker \psi + \dim \im \psi) - \dim \im \psi \oplus \langle G \rangle \oplus \langle G' \rangle\\
+&= 2m + \dim \Ker \psi - \dim \langle G \rangle \oplus \langle G' \rangle\\
+&= 2m + 2(n-m)\\
+&= 2n
+\end{align*}
+
+\newpage
+
+\section{References}
+\input{References.tex}
+
+
+\end{document}
+
